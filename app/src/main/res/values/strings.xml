@@ -18,4 +18,5 @@
     <string name="results_activity_restart_button_text">Restart</string>
     <string name="result_win">You won!</string>
     <string name="result_lose">You Lost the correct answer was: </string>
+    <string name="remaining_rights_string">\"Remaning rights: \"</string>
 </resources>

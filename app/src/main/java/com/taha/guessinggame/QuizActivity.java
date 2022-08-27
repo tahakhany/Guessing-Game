@@ -60,16 +60,14 @@ public class QuizActivity extends AppCompatActivity {
         guessButton = findViewById(R.id.quiz_activity_guess_button);
         guessEditText = findViewById(R.id.quiz_activity_guess_edit_text);
 
-        int digitNumber = getIntent().getIntExtra(MainActivity.DIGIT_NNUMBER, 0);
+        int digitNumber = getIntent().getIntExtra(MainActivity.DIGIT_NUMBER, 0);
         minGuessRange = (int) Math.pow(10, digitNumber - 1);
         maxGuessRange = (int) (Math.pow(10, digitNumber) - 1);
 
         answer = random.nextInt(maxGuessRange - minGuessRange) + minGuessRange;
         openResultsActivity = new Intent(QuizActivity.this, ResultsActivity.class);
 
-        guessButton.setOnClickListener(view -> {
-            makeNewGuess(Integer.parseInt(guessEditText.getText().toString()));
-        });
+        guessButton.setOnClickListener(view -> makeNewGuess(Integer.parseInt(guessEditText.getText().toString())));
 
         guessEditText.setOnKeyListener((view, i, keyEvent) -> {
             if (i == KeyEvent.KEYCODE_ENTER &&
@@ -118,7 +116,8 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
         rightsRemaining = 10 - guessedNumbers.size();
-        rightsRemainingTextView.setText("Remaning rights: " + rightsRemaining);
+        String rightsRemainingTemp = getString(R.string.remaining_rights_string) + rightsRemaining;
+        rightsRemainingTextView.setText(rightsRemainingTemp);
     }
 
     public void openResults(boolean isWin){

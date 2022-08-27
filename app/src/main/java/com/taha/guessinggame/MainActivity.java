@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Bundle bundle;
     Button startBtn;
 
-    public static String DIGIT_NNUMBER = "digitNumber";
+    public static String DIGIT_NUMBER = "digitNumber";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
             bundle = new Bundle();
 
             if (radio2Digit.isChecked()) {
-                openQuizActivity.putExtra(DIGIT_NNUMBER, 2);
+                openQuizActivity.putExtra(DIGIT_NUMBER, 2);
                 startActivity(openQuizActivity);
             } else if (radio3Digit.isChecked()) {
-                openQuizActivity.putExtra(DIGIT_NNUMBER, 3);
+                openQuizActivity.putExtra(DIGIT_NUMBER, 3);
                 startActivity(openQuizActivity, bundle);
             } else if (radio4Digit.isChecked()) {
-                openQuizActivity.putExtra(DIGIT_NNUMBER, 4);
+                openQuizActivity.putExtra(DIGIT_NUMBER, 4);
                 startActivity(openQuizActivity, bundle);
             } else {
                 Toast.makeText(MainActivity.this,
