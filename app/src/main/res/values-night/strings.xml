@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="splash_activity_app_name_text">Number Guessing Game</string>
+    <string name="main_activity_info_text"> please select a number of digits.
+    the number of digits that I keep in mind and the number of digits you choose will be the same.
+    also never forget that you have 10 rights. </string>
+    <string name="main_activity_2_digit_radio_btn">2 Digits</string>
+    <string name="main_activity_3_digit_radio_btn">3 Digits</string>
+    <string name="main_activity_4_digit_radio_btn">4 Digits</string>
+    <string name="main_activity_start_button_text">Start</string>
 </resources>
