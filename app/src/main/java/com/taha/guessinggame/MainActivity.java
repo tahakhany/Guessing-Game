@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
             bundle = new Bundle();
 
             if (radio2Digit.isChecked()) {
-                bundle.putInt(DIGIT_NNUMBER, 2);
-                startActivity(openQuizActivity, bundle);
+                openQuizActivity.putExtra(DIGIT_NNUMBER, 2);
+                startActivity(openQuizActivity);
             } else if (radio3Digit.isChecked()) {
-                bundle.putInt(DIGIT_NNUMBER, 3);
+                openQuizActivity.putExtra(DIGIT_NNUMBER, 3);
                 startActivity(openQuizActivity, bundle);
             } else if (radio4Digit.isChecked()) {
-                bundle.putInt(DIGIT_NNUMBER, 4);
+                openQuizActivity.putExtra(DIGIT_NNUMBER, 4);
                 startActivity(openQuizActivity, bundle);
             } else {
                 Toast.makeText(MainActivity.this,
