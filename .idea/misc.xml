@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Taha/AndroidStudioProjects/GuessingGame/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Taha/AndroidStudioProjects/GuessingGame/app/src/main/res/layout/activity_quiz.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Taha/AndroidStudioProjects/GuessingGame/app/src/main/res/layout/activity_quiz.xml" value="0.4" />
+        <entry key="..\:/Users/Taha/AndroidStudioProjects/GuessingGame/app/src/main/res/layout/activity_resaults.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/Taha/AndroidStudioProjects/GuessingGame/app/src/main/res/layout/activity_splash.xml" value="0.2" />
       </map>
     </option>

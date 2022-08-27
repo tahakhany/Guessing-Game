@@ -8,4 +8,10 @@
     <string name="main_activity_3_digit_radio_btn">3 Digits</string>
     <string name="main_activity_4_digit_radio_btn">4 Digits</string>
     <string name="main_activity_start_button_text">Start</string>
+    <string name="quiz_activity_guess_edit_text_hint_text">Whats do you guess?</string>
+    <string name="quiz_activity_empty_guess_text">"    "</string>
+    <string name="quiz_activity_guess_button">Guess</string>
+    <string name="results_activity_restart_button_text">Restart</string>
+    <string name="result_win">You won!</string>
+    <string name="result_lose">You Lost the correct answer was: </string>
 </resources>
