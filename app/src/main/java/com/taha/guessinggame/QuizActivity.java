@@ -2,17 +2,16 @@ package com.taha.guessinggame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.material.tabs.TabLayout;
-
 import java.util.ArrayList;
+import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -23,10 +22,16 @@ public class QuizActivity extends AppCompatActivity {
     TextView rightsRemainingTextView;
     EditText guessEditText;
     Button guessButton;
+    Random random;
+    Intent openResultsActivity;
     int rightsRemaining;
     int answer;
     int minGuessRange;
     int maxGuessRange;
+    public static final String GAME_STATUS = "game status";
+    public static final String REMAINING_RIGHTS = "remaining rights";
+    public static final String GUESS_HISTORY = "guess history";
+    public static final String CORRECT_ANSWER = "correct answer";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,7 @@ public class QuizActivity extends AppCompatActivity {
 
         guessedNumbersTextView = new ArrayList<>();
         guessedNumbers = new ArrayList<>();
+        random = new Random();
 
         guessedNumbersTextView.add(findViewById(R.id.quiz_activity_guess_1));
         guessedNumbersTextView.add(findViewById(R.id.quiz_activity_guess_2));
@@ -49,28 +55,29 @@ public class QuizActivity extends AppCompatActivity {
         guessedNumbersTextView.add(findViewById(R.id.quiz_activity_guess_9));
         guessedNumbersTextView.add(findViewById(R.id.quiz_activity_guess_10));
 
-        hintTextView = findViewById(R.id.quiz_activity_hint_text);
+        hintTextView = findViewById(R.id.quiz_activity_result_text);
         rightsRemainingTextView = findViewById(R.id.quiz_activity_remaining_rights_text);
         guessButton = findViewById(R.id.quiz_activity_guess_button);
         guessEditText = findViewById(R.id.quiz_activity_guess_edit_text);
 
         int digitNumber = getIntent().getIntExtra(MainActivity.DIGIT_NNUMBER, 0);
-        minGuessRange = 10 ^ (digitNumber - 1);
-        maxGuessRange = 10 ^ (digitNumber) - 1;
+        minGuessRange = (int) Math.pow(10, digitNumber - 1);
+        maxGuessRange = (int) (Math.pow(10, digitNumber) - 1);
 
-        answer = (int) (Math.random() * (maxGuessRange - minGuessRange) + minGuessRange);
+        answer = random.nextInt(maxGuessRange - minGuessRange) + minGuessRange;
+        openResultsActivity = new Intent(QuizActivity.this, ResultsActivity.class);
 
         guessButton.setOnClickListener(view -> {
             makeNewGuess(Integer.parseInt(guessEditText.getText().toString()));
         });
 
-        /*guessEditText.setOnKeyListener((view, i, keyEvent) -> {
-            if(i == KeyEvent.KEYCODE_ENTER &&
-                    keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+        guessEditText.setOnKeyListener((view, i, keyEvent) -> {
+            if (i == KeyEvent.KEYCODE_ENTER &&
+                    keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
                 makeNewGuess(Integer.parseInt(guessEditText.getText().toString()));
             }
-            return true;
-        });*/
+            return false;
+        });
 
     }
 
@@ -83,7 +90,8 @@ public class QuizActivity extends AppCompatActivity {
                     .setText(String.valueOf(guessedNumbers.get(guessedNumbers.size() - 1)));
             guessedNumbersTextView.get(guessedNumbers.size() - 1)
                     .setTextColor(getResources().getColor(R.color.blue_correct));
-            //todo show endgame activity here
+
+            openResults(true);
 
         } else if (guessedNumber > answer) {
             hintTextView.setText(getString(R.string.quiz_activity_larger_answer));
@@ -93,8 +101,8 @@ public class QuizActivity extends AppCompatActivity {
                     .setText(String.valueOf(guessedNumbers.get(guessedNumbers.size() - 1)));
             guessedNumbersTextView.get(guessedNumbers.size() - 1)
                     .setTextColor(getResources().getColor(R.color.green_larger));
-            if (guessedNumbers.size() == 10){
-                //todo show endgame activity here
+            if (guessedNumbers.size() == 10) {
+                openResults(false);
             }
 
         } else {
@@ -105,10 +113,20 @@ public class QuizActivity extends AppCompatActivity {
                     .setText(String.valueOf(guessedNumbers.get(guessedNumbers.size() - 1)));
             guessedNumbersTextView.get(guessedNumbers.size() - 1)
                     .setTextColor(getResources().getColor(R.color.red_smaller));
-            if (guessedNumbers.size() == 10){
-                //todo show endgame activity here
+            if (guessedNumbers.size() == 10) {
+                openResults(false);
             }
         }
+        rightsRemaining = 10 - guessedNumbers.size();
+        rightsRemainingTextView.setText("Remaning rights: " + rightsRemaining);
+    }
+
+    public void openResults(boolean isWin){
+        openResultsActivity.putExtra(GAME_STATUS, isWin);
+        openResultsActivity.putExtra(REMAINING_RIGHTS,rightsRemaining);
+        openResultsActivity.putExtra(GUESS_HISTORY,guessedNumbers);
+        openResultsActivity.putExtra(CORRECT_ANSWER,answer);
+        startActivity(openResultsActivity);
     }
 
 }

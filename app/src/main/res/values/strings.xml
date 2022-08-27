@@ -15,4 +15,7 @@
     <string name="quiz_activity_correct_answer">Correct!</string>
     <string name="quiz_activity_smaller_answer">Your Guess is smaller than the answer</string>
     <string name="quiz_activity_larger_answer">Your Guess is larger than the answer</string>
+    <string name="results_activity_restart_button_text">Restart</string>
+    <string name="result_win">You won!</string>
+    <string name="result_lose">You Lost the correct answer was: </string>
 </resources>

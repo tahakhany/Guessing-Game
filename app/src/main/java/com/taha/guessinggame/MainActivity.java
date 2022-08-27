@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         R.string.main_activity_no_numbers_selected_message,Toast.LENGTH_SHORT)
                         .show();
             }
+            finish();
         });
     }
 }
